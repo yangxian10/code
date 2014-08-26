@@ -55,7 +55,8 @@ def hashinghist(img_idx, out_img):
             T = zeros(shape(out_img[idx_span[0]]))
             for j in range(PCANet.num_filters[-1]):
                 signmap = sign(out_img[idx_span[PCANet.num_filters[-1]*i+j]])
-                T += map_weights[j]*(signmap[signmap<=0]=0)
+                signmap[signmap<=0]=0
+                T += map_weights[j]*(signmap)
             #print 'T shape==', shape(T)
             TT = im2col(T,PCANet.hist_blocksize,patch_step)
             #bhisttemp = zeros((TT.shape[1], 2**PCANet.num_filters[-1]))
