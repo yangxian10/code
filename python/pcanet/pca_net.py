@@ -95,7 +95,7 @@ def train(input_imgs):
     numImg = len(input_imgs)
     imgIdx = range(numImg)
     print 'train image number:', numImg
-    outimg = copy.copy(input_imgs)
+    outimg = copy.deepcopy(input_imgs)
     for stage in range(PCANet.num_stages):
         print 'pca training layer', stage 
         V.append(filterbank(input_imgs, PCANet.patch_size, PCANet.num_filters[stage]))
@@ -118,7 +118,7 @@ def train(input_imgs):
     return f, V, blkIdx
 
 def feaExt(input_img, V):
-    outimg = copy.copy(input_img)
+    outimg = copy.deepcopy(input_img)
     #numImg = len(input_img)
     numImg = 1
     imgIdx = range(numImg)
